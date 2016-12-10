@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  purpose: MyString
+  position: 1
+  image: MyString
+  public: false
+  user: one
+  place: one
+
+two:
+  purpose: MyString
+  position: 1
+  image: MyString
+  public: false
+  user: two
+  place: two

@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :stops
+  resources :places
+  resources :walks
   scope :api do
     resources :users, expect: [:create]
 
