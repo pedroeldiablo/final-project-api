@@ -25,6 +25,7 @@ class StopsController < ApplicationController
         lat: stop_data[:lat],
         lng: stop_data[:lng],
         image: stop_data[:place_image],
+        address: stop_data[:place_address],
         name: stop_data[:place_name]
       )
     end
@@ -33,6 +34,7 @@ class StopsController < ApplicationController
     stop_data.delete(:lat)
     stop_data.delete(:lng)
     stop_data.delete(:place_image)
+    stop_data.delete(:place_address)
     stop_data.delete(:place_name)
 
     @stop = Stop.new(Uploader.upload(stop_data))
@@ -69,6 +71,6 @@ class StopsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def stop_params
-      params.permit(:purpose, :position, :place_name, :place_image, :lat, :lng, :google_place_id, :image, :public, :user_id, :place_id, :walk_id, :base64, walk_ids:[])
+      params.permit(:purpose, :position, :place_name, :place_image, :place_address, :lat, :lng, :google_place_id, :image, :public, :user_id, :place_id, :walk_id, :base64, walk_ids:[])
     end
 end
