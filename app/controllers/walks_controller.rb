@@ -16,6 +16,7 @@ class WalksController < ApplicationController
   # POST /walks
   def create
     @walk = Walk.new(walk_params)
+    @walk.user = current_user
 
     if @walk.save
       render json: @walk, status: :created, location: @walk

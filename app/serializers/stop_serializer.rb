@@ -1,7 +1,7 @@
 class StopSerializer < ActiveModel::Serializer
-  attributes :id, :purpose, :position, :image, :public, :walks, :place
+  attributes :id, :purpose, :position, :public, :walks
 
-  has_one :place
+  belongs_to :place
   has_many :walks
   belongs_to :user
 end

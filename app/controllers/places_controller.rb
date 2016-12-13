@@ -15,7 +15,8 @@ class PlacesController < ApplicationController
 
   # POST /places
   def create
-    @place = Place.new(place_params)
+    # @place = Place.new(place_params)
+    @place = Place.new(Uploader.upload(place_params))
 
     if @place.save
       render json: @place, status: :created, location: @place
@@ -46,6 +47,6 @@ class PlacesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def place_params
-      params.require(:place).permit(:name, :address, :image, :lat, :lng, :google_place_id)
+      params.permit(:name, :address, :image, :lat, :lng, :google_place_id, :base64)
     end
 end
