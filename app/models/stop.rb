@@ -1,7 +1,7 @@
 class Stop < ApplicationRecord
   belongs_to :user
   belongs_to :place
-  has_and_belongs_to_many :walks
+  belongs_to :walk, optional: true
 
   mount_uploader :image, ImageUploader
 end
