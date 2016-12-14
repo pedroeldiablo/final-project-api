@@ -15,6 +15,7 @@ class StopsController < ApplicationController
 
   # POST /stops
   def create
+
     # first see if the place already exists
     stop_data = stop_params
     place = Place.where(google_place_id: stop_data[:google_place_id]).first
