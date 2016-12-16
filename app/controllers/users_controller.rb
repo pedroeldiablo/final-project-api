@@ -27,16 +27,26 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
-    if @user.update(user_params)
-      render json: @user
+    if @user == current_user
+
+      if @user.update(user_params)
+        render json: @user
+      else
+        render json: @user.errors, status: :unprocessable_entity
+      end
+
     else
-      render json: @user.errors, status: :unprocessable_entity
+      render json: { errors: ["Unauthorized"] }, status: 401
     end
   end
 
   # DELETE /users/1
   def destroy
-    @user.destroy
+    if @user == current_user
+      @user.destroy
+    else
+      render json: { errors: ["Unauthorized"] }, status: 401
+    end
   end
 
   private

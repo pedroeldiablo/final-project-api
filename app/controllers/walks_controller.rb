@@ -1,5 +1,6 @@
 class WalksController < ApplicationController
   before_action :set_walk, only: [:show, :update, :destroy]
+  skip_before_action :authenticate_user!, except: [:update, :create, :destroy]
 
   # GET /walks
   def index
@@ -36,7 +37,11 @@ class WalksController < ApplicationController
 
   # DELETE /walks/1
   def destroy
-    @walk.destroy
+    if @walk.user == current_user || !@walk.user
+      @walk.destroy
+    else
+      render json: { errors: ["Unauthorized"] }, status: 401
+    end
   end
 
   private

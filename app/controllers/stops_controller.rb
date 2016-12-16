@@ -1,5 +1,6 @@
 class StopsController < ApplicationController
   before_action :set_stop, only: [:show, :update, :destroy]
+  skip_before_action :authenticate_user!, except: [:update, :create, :destroy]
 
   # GET /stops
   def index
@@ -61,7 +62,11 @@ class StopsController < ApplicationController
 
   # DELETE /stops/1
   def destroy
-    @stop.destroy
+    if @stop.user == current_user || !@stop.user
+      @stop.destroy
+    else
+      render json: { errors: ["Unauthorized"] }, status: 401
+    end
   end
 
   private
