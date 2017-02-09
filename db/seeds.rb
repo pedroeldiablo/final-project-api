@@ -88,7 +88,7 @@ emily = User.create!({
 #
 #
 # stop1 = Stop.create!({
-#   purpose:"Bruch with a paper and catch-up. Coffee to get us going",
+#   purpose:"Brunch with a paper and catch-up. Coffee to get us going",
 #   position: 1,
 #   image:"",
 #   public: true,
